@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://custom-gpt-kaos-projects-8ef1fc03.vercel.app"
+      "url": "customgpt-fb-audience-4bemuydzb-mkt-martechs-projects.vercel.app"
     }
   ],
   "paths": {
@@ -113,3 +113,4 @@
     }
   }
 }
+
