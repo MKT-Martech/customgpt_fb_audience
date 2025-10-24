@@ -1,0 +1,19 @@
+# ---
+# CORRECT: Added the "Bearer " prefix to the token
+@AUTH_TOKEN = Bearer 4a6f1d4d3b2a9e7f10c8b1a62b4ff3a7
+
+# ---
+# Test 1: English
+GET https://custom-gpt-kaos-projects-8ef1fc03.vercel.app/fb/interests?q=mobile_game&country=TH&limit=5
+Authorization: {{AUTH_TOKEN}}
+
+###
+# Test 2: Thai
+GET https://custom-gpt-kaos-projects-8ef1fc03.vercel.app/fb/interests?q=เกมมือถือ&country=TH&limit=5
+Authorization: {{AUTH_TOKEN}}
+
+###
+# Test 3: Another Thai
+GET https://custom-gpt-kaos-projects-8ef1fc03.vercel.app/fb/interests?q=เกมออนไลน์&country=TH&limit=5
+Authorization: {{AUTH_TOKEN}}
+

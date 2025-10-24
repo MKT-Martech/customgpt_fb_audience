@@ -1,0 +1,115 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FB Interest Proxy API",
+    "version": "1.0.0",
+    "description": "Lightweight proxy to search Facebook Ad Interests by keyword."
+  },
+  "servers": [
+    {
+      "url": "https://custom-gpt-kaos-projects-8ef1fc03.vercel.app"
+    }
+  ],
+  "paths": {
+    "/fb/interests": {
+      "get": {
+        "operationId": "get_fb_interests",
+        "summary": "Search Facebook Ad Interests",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search keyword (e.g., 'mobile game')",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of results to return (default 10)",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Interest search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "path": {
+                            "type": "string"
+                          },
+                          "size": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "query": "mobile game",
+                  "count": 3,
+                  "items": [
+                    {
+                      "id": "6003158198275",
+                      "name": "Video games (gaming)",
+                      "path": "Interests > Games > Video games",
+                      "size": "954M–1B"
+                    },
+                    {
+                      "id": "6003380576181",
+                      "name": "Role-playing game (video game)",
+                      "path": "Interests > Games > RPG",
+                      "size": "94M–110M"
+                    },
+                    {
+                      "id": "6003102728434",
+                      "name": "Casual game (video game)",
+                      "path": "Interests > Games > Casual game",
+                      "size": "45M–60M"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing or invalid parameters."
+          },
+          "401": {
+            "description": "Unauthorized – invalid or missing bearer token."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    }
+  }
+}
